@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: scaling-node-pool
+      containers:
+        - name: my-app-container
+          image: ashokgcp6/dockerdemo:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: "400m"
+              memory: "10Mi"
+            limits:
+              cpu: "500m"
+              memory: "50Mi"
+
