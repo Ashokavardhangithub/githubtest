@@ -33,7 +33,7 @@ spec:
     version: green  # Initially routing to Blue
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: ClusterIP
+      port: 80          # External port
+      targetPort: 8080   # Port your app listens to internally
+  type: LoadBalancer
 
