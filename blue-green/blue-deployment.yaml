@@ -21,7 +21,7 @@ spec:
         - name: my-app-container
           image: ashokgcp6/dockerdemo:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -33,7 +33,7 @@ spec:
     version: blue  # Initially routing to Blue
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: ClusterIP
+      port: 80          # External port
+      targetPort: 80   # Port your app listens to internally
+  type: LoadBalancer
 
